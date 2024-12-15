@@ -20,14 +20,18 @@ def home(request):
 			messages.success(request, 'You Have Been Logged In!')
 			return redirect('home')
 		else:
-			messages.success(request, 'There Was An Error Logging In, Please Try Again...')
+			messages.success(request, 'There Was An Error Logging In, Please Try Again')
 			return redirect('home')
 	else:
 		return render(request, 'home.html', {})
 
 def login_user(request):
+	#our login function is under the home function
 	pass
 
 def logout_user(request):
-	pass
+	logout(request)
+	messages.success(request, "You Have Successfully Logged Out")
+	return redirect('home')
+
 
