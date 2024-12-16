@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from .forms import SignUpForm
 
 
 # 3 steps process:
@@ -34,4 +35,6 @@ def logout_user(request):
 	messages.success(request, "You Have Successfully Logged Out")
 	return redirect('home')
 
+def register_user(request):
+	return render(request, 'register.html', {})
 
