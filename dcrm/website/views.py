@@ -29,14 +29,20 @@ def home(request):
 	else:
 		return render(request, 'home.html', {'records':records})
 
+
+
 def login_user(request):
 	#our login function is under the home function
 	pass
+
+
 
 def logout_user(request):
 	logout(request)
 	messages.success(request, "You Have Successfully Logged Out")
 	return redirect('home')
+
+
 
 def register_user(request):
 	if request.method == 'POST':
@@ -55,4 +61,27 @@ def register_user(request):
 		return render(request, 'register.html', {'form':form})
 
 	return render(request, 'register.html', {'form':form})
+
+
+
+def customer_record(request, pk):
+	if request.user.is_authenticated:
+		# look up records
+		customer_record = Record.objects.get(id=pk)
+		return render(request, 'record.html', {'customer_record':customer_record})
+	else:
+		messages.success(request, "You Need to Login to View Customer Record")
+		return redirect('home')
+
+
+
+
+
+
+
+
+
+
+
+
 
